@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { StyleSheet, TextInput, View, Dimensions } from 'react-native'
-import { EvilIcons } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons'
 
 export default function SearchBar({ fetchWeatherData }) {
 
     const [cityName, setCityName] = useState('')
 
     return (
-        <View style={StyleSheet.searchBar}>
-            <TextInput
-                placeholder='Enter City name'
+        <View style={styles.searchBar}>
+            <TextInput 
+                placeholder='Enter city name'
                 value={cityName}
                 onChangeText={(text) => setCityName(text)}
             />
