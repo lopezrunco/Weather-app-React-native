@@ -14,7 +14,7 @@ export default function App() {
     {/* Obtiene los datos del clima usando el nombre de la ciudad como parametro */}
     async function fetchWeatherData(cityName) {
         setLoaded(false)
-        const API = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
+        const API = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`
 
         /* Se conecta a la API. Si la respuesta esta OK, obtiene los datos y los setea en setWeatherData */
         try {
@@ -63,9 +63,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#7cb6eb',
     alignItems: 'center',
     justifyContent: 'center',
+    textAlign: 'center'
   },
   primaryText: {
       margin: 20,

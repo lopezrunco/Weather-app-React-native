@@ -30,7 +30,7 @@ export default function Weather({ weatherData, fetchWeatherData }) {
     
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor='darkgray' />
+            {/* <StatusBar backgroundColor='darkgray' /> */}
             <ImageBackground 
                 source={backgroundImage}
                 style={styles.backgroundImg}
@@ -40,21 +40,21 @@ export default function Weather({ weatherData, fetchWeatherData }) {
                 <SearchBar fetchWeatherData={fetchWeatherData} />
 
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={{ ...styles.headerText, color: textColor, fontWeight: 'bold', fontSize: 46 }}>{name}</Text>
-                    <Text style={{ ...styles.headerText, color: textColor, fontWeight: 'bold' }}>{main}</Text>
-                    <Text style={{ ...styles.headerText, color: textColor }}>{temp} °C</Text>
+                    <Text style={styles.cityName}>{name}</Text>
+                    <Text style={styles.temp}>{temp} °C</Text>
+                    <Text style={styles.weatherDesc}>{main}</Text>
                 </View>
 
                 <View style={styles.extraInfo}>
 
                     <View style={styles.info}>
-                        <Text style={{ fontSize: 22, color: 'white' }}>Humidity</Text>
-                        <Text style={{ fontSize: 22, color: 'white' }}>{humidity} %</Text>
+                        <Text style={styles.infoText}>Humidity: </Text>
+                        <Text style={styles.infoText}>{humidity} %</Text>
                     </View>
 
                     <View style={styles.info}>
-                        <Text style={{ fontSize: 22, color: 'white' }}>Wind Speed</Text>
-                        <Text style={{ fontSize: 22, color: 'white' }}>{speed} m/s</Text>
+                        <Text style={styles.infoText}>Wind Speed: </Text>
+                        <Text style={styles.infoText}>{speed} m/s</Text>
                     </View>
                 
                 </View>
@@ -74,21 +74,35 @@ const styles = StyleSheet.create({
         flex: 1,
         width: Dimensions.get('screen').width
     },
-    headerText: {
-        fontSize: 36,
-        marginTop: 10,
-    },
     extraInfo: {
-        flexDirection: 'row',
-        marginTop: 20,
+        flexDirection: 'column',
+        marginTop: 50,
         justifyContent: 'space-between',
         padding: 10
     },
     info: {
-        width: Dimensions.get('screen').width/2.5,
         backgroundColor: 'rgba(0,0,0, 0.5)',
-        padding: 10,
-        borderRadius: 15,
-        justifyContent: 'center'
+        padding: 20,
+        borderRadius: 5,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        textAlign: 'center',
+        marginBottom: 10
+    },
+    infoText: {
+        fontSize: 24,
+        color: '#fff',
+    },
+    cityName: {
+        fontSize: 30,
+        fontWeight: '700'
+    },
+    temp: {
+        fontSize: 60,
+        fontWeight: '700'
+    },
+    weatherDesc: {
+        fontSize: 30,
+        fontWeight: '700'
     }
 })

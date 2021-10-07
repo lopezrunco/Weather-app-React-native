@@ -12,6 +12,7 @@ export default function SearchBar({ fetchWeatherData }) {
                 placeholder='Enter city name'
                 value={cityName}
                 onChangeText={(text) => setCityName(text)}
+                placeholderTextColor="#000000" 
             />
             <EvilIcons name="search" size={28} color="black" onPress={() => fetchWeatherData(cityName)} />
         </View>
@@ -20,17 +21,16 @@ export default function SearchBar({ fetchWeatherData }) {
 
 const styles = StyleSheet.create({
     searchBar: {
-        marginTop: 35,
+        marginTop: 40,
+        marginBottom: 60,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         width: Dimensions.get('screen').width - 20,
-        borderWidth: 1.5,
         paddingVertical: 10,
-        borderRadius: 25,
+        borderRadius: 5,
         marginHorizontal: 10,
         paddingHorizontal: 10,
-        backgroundColor: 'lightgray',
-        borderColor: 'lightgray'
+        backgroundColor: '#ffffff28',
     }
 })
