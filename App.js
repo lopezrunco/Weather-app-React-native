@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar'
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import Weather from './components/Weather'
+import SearchBar from './components/SearchBar'
 
 const API_KEY = "097acbb8da532953b9e059038486c75e"
 
@@ -17,13 +19,15 @@ export default function App() {
     /* Se conecta a la API. Si la respuesta esta OK, obtiene los datos y los setea en setWeatherData */
     try {
       const response = await fetch(API)
+
       if(response.status == 200) {
         const data = await response.json()
         setWeatherData(data)
       } else {
         setWeatherData(null)
       }
-      setLoaded(true)
+      // setLoaded(true)
+
     } catch (error) {
       console.log(error)
     }
@@ -34,10 +38,24 @@ export default function App() {
     console.log(weatherData)
   }, [])
 
+  if(!loaded) {
+    return(
+      <View style={styles.container}>
+        <ActivityIndicator color='gray' size={36} />
+      </View>
+    )
+  } else if(weatherData === null) {
+    return (
+      <View>
+        <SearchBar fetchWeatherData={fetchWeatherData} />
+        <Text style={styles.primaryText}>City Not Found! Try Different City</Text>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Weather weatherData={weatherData} fetchWeatherData={fetchWeatherData} />
     </View>
   )
 }
@@ -49,4 +67,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  primaryText: {
+    margin: 20,
+    fontSize: 28
+  }
 })
